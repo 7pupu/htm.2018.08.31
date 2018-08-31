@@ -1,0 +1,103 @@
+﻿<html>
+	<head>
+		<title>index.htm</title>
+
+
+
+<script type="text/javascript">
+
+
+console.log("Ready0");
+
+(function() {
+  console.log("Ready2");
+})();
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  console.log("Ready1");
+  //poi();//window.Worker
+  //poi2();//async
+  //poi3();//window.Storage
+  //poi4();//動態產生window.Worker
+  poi5(null,null,"傳入參數",123,"其實","進口");
+});
+function poi0(){}
+function poi5(a,b="ㄏㄏ",c, ...other){
+	a=a || "ㄆㄆ";
+	console.log(arguments);//全部的傳入參數
+	console.log(a,b);//預設值設定
+	console.log(other);//不特定數量的參數
+}
+function poi4(){
+content = `
+//It is javascript content
+postMessage(["ㄏㄏ傳給主視窗"]);
+`;
+//反引號`
+//模版字符串Template literals
+	blobWorker = new Blob([content], {type:'application/javascript'});
+	blobWorker_url = URL.createObjectURL(blobWorker);
+	var ww = new Worker(blobWorker_url);
+	URL.revokeObjectURL(blobWorker_url);
+	ww.addEventListener('error', function(error){
+		console.error(error);
+	});
+    ww.addEventListener("message", function(event){
+		console.log(event);
+	});
+}
+function poi3(){
+	if (typeof(Storage) !== "undefined"){}
+	if (window.Storage) {
+		console.log("window.Storage");
+	}
+	//cookie只能存4KB
+	localStorage.setItem("咲戀我老婆", "好想舔她的精靈耳ㄛ");
+	localStorage.poi = "xopowo";
+	console.log(localStorage);
+	console.log(localStorage.getItem("poi"));
+	console.log(localStorage.咲戀我老婆);
+	//sessionStorage 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。
+	sessionStorage.setItem("咲戀我老婆", "好想舔她的精靈耳ㄛ");
+	sessionStorage.ppp="123";
+	console.log(sessionStorage);
+
+	
+}
+async function poi2(){
+	//fetch("demo_worker.js").then(function(a,b){});
+	//await 等待解析
+	var res = await fetch("demo_worker.js");
+	console.log(res.status ,res.ok, res.statusText);
+	console.log(res.text());
+	var res2 = new Request("demo_worker.js");
+	console.log(res2);
+}
+
+function poi(){
+	if(window.Worker) {
+	  console.log("Worker");
+	  var ww = new Worker("demo_worker.js");
+	}
+	//ww.onmessage = function(event){};
+    ww.postMessage({標題:"傳給worker",內容:"這是傳給worker的內容"});//傳給worker
+	
+    ww.addEventListener("message", function(event){
+		//document.getElementById("result").innerHTML = event.data;
+		//console.log(event);
+		document.getElementById("result").textContent=event.data[0];
+		console.log(event);
+		console.log(event.data[1].內容);
+	}, false);//監聽message事件
+	
+	//worker.terminate();//結束worker
+	
+
+}
+</script>
+	</head>
+	<body>
+<p>Count numbers: <output id="result"></output></p>
+
+	</body>
+</html>
