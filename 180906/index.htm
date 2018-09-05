@@ -1,0 +1,193 @@
+﻿<html>
+	<head>
+		<title>index.htm</title>
+<script 
+  id="jq";
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  
+<script id="js2" type="text/javascript">
+
+console.log("javascript");
+console.log("`[readystate]="+document.readyState);
+
+window.onload=function(){console.log("window.onload");};
+
+(function(x){console.log(x);})("IIFE");
+(()=>123)()
+var iife = (()=>{return "IIFE";})();
+console.log(iife);
+//async 
+//await 
+(async function(){
+  var aa = function(){console.log("async await");};
+  await aa;
+})();
+
+//document.getElementById("jq");
+
+document.addEventListener("readystatechange", function(event) {
+  console.log("readystatechange");
+  console.log("`[readystate]="+this.readyState);
+  //console.log("`[readystate]=",event);
+});
+document.onreadystatechange = function(){
+};
+
+//$(document).ready(function(){});
+$(document).ready(function() {
+  console.log("document ready");
+});
+$(function(){
+  console.log("document ready 2");
+});
+
+
+
+window.onresize = function(){};
+
+
+///
+document.addEventListener("DOMContentLoaded", function(event) {
+  console.log("DOMContentLoaded");
+  poi();
+  poi2();
+  poi3();
+});
+
+
+function poi0(){}
+function poi3(){
+
+}
+function poi2(){
+  var wh=function(event){
+    var str="";
+    str+=""+$(window).width()+"x"+$(window).height()+"";
+    $("#body0b1").html(str);
+  };
+  //window.onresize=wh();
+  //$(window).resize(wh());
+  //window.addEventListener('resize', wh());
+  window.addEventListener('resize', function(e){
+    
+  });
+  //wh();
+  //$(window).on("orientationchange",function(e){
+  window.addEventListener("orientationchange",function(e){
+    //wh();
+    $("#body0b1").html("");
+    $("#body0b1").append(""+$(window).width()+"x"+$(window).height());
+    $("#body0b1").append("螢幕角度="+window.orientation);
+		//console.log();
+    //alert("方向有改变!");
+  });
+  
+}
+
+function poi(){
+  var str="";
+str=`
+br<br/>br<br/>br<br/>br<br/>br<br/>
+br<br/>br<br/>br<br/>br<br/>br<br/>
+br<br/>br<br/>br<br/>br<br/>br<br/>
+br<br/>br<br/>br<br/>br<br/>br<br/>
+
+`;
+  $("#body0a").append(str);
+  $("#body0b").append(str);
+  $("#body0c").append(str);
+    
+  
+  $("#menuopen").click(function(){
+    $("div#body0a").animate({left:"0px"});
+  });
+  $("#menuclose").click(function(){
+    $("div#body0a").animate({left:"-250px"});
+  });
+
+  $("div").css({
+    "border":"solid blue 1px",
+    "box-sizing":"border-box",
+  });
+/*
+  border:solid blue 1px;
+  box-sizing: border-box;
+  overflow:hidden;
+  margin-left: auto;
+  margin-right: auto;
+*/
+}
+
+
+</script>
+<style>
+
+div#body0{
+  display:block;
+  width:100%;
+  position: relative;
+
+}
+
+div#body0a{
+  display:block;
+  width:250px;
+  position: absolute;
+  top:0px;
+  left:-250px;
+  opacity: 0.5;
+}
+div#body0b{
+  display:block;
+}
+div#body0c{
+  display:block;
+}
+
+#menuclose{
+  display:block;
+  height:50px;
+}
+#menuopen{
+  display:block;
+  height:50px;
+  width:50px;
+  white-space:nowrap;
+}
+
+.menu{ 
+  background-color:rgba(0, 255, 255, 0.5);
+}
+#menuclose:hover { 
+    background-color: red;
+}
+#menuopen:hover { 
+    background-color: yellow;
+}
+
+
+
+</style>
+</head>
+<body>
+
+<div id="body0">
+  <div id="body0a">
+    <div id="menuclose" class="menu">收合選單</div>
+    <div id="body0m1" class="menu1b">選單選項</div>
+    <div id="body0m2" class="menu1b">選單選項</div>
+    <div id="body0m3" class="menu1b">選單選項</div>
+  </div>
+  <div id="body0b">
+    <div id="menuopen" class="menu">開啟選單</div>
+    bbb
+  </div>
+  <div id="body0c">
+    <div id="body0c1">一些東西</div>
+    ccc</div>
+</div>
+
+</body>
+</html>

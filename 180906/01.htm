@@ -1,0 +1,91 @@
+﻿<html>
+	<head>
+		<title>index.htm</title>
+<script 
+  id="jq";
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  
+<script id="js2" type="text/javascript">
+//	setTimeout(function(){},3000);
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  console.log("DOMContentLoaded");
+});
+$(document).ready(function() {
+  console.log("document ready");
+  poi();
+  poi2();
+});
+function poi0(){}
+function poi2(){
+	var str = "<div><b>aa</b></div>";
+	var html=$('<output>').append($.parseHTML(str));
+	console.log( $(str).find('b').html() );
+	console.log( $('b', html).html() );
+}
+
+function poi(){
+	function gg() { 
+	  return $.get('00.htm');
+	};
+	async function test() {
+	  var x = await gg();
+	  console.log(x);
+	}
+	//test();
+	
+	function f() { 
+		return $.get('00.htm');
+		try{
+		}
+		catch(err){
+			console.log("錯誤",err);
+		}
+	};
+	f().catch(function(a,b,c){
+		console.log("catch");
+		console.log(a,b,c);
+	})
+	f().then(function(a,b,c){
+		console.log("then");
+		//console.log(a,b,c);
+		//console.log( c.responseText );
+		//var aa=$($.parseHTML(a));
+		//var html= $('<div>').append(a); //$.parseHTML
+		//var body =$($.parseXML(a).children('html') );
+		//var body = a.substring( a.indexOf("<body>")+6 , a.indexOf("</body>") );
+		//var html = document.createElement('html');
+		//html.innerHTML = a;
+		//var head = $(html).find('head:first');
+		//var body = $(html).find('body:first');
+		//var body = $.parseJSON($('body', a).text())
+		a=a.replace(/<(.?)html>/g,"<$1htmlhtml>");
+		a=a.replace(/<(.?)body>/g,"<$1bodybody>");
+		a=a.replace(/<(.?)head>/g,"<$1headhead>");
+
+		console.log( a );
+		console.log( $(a).find("bodybody").html() );
+		//console.log( $(a).find('title').html() );
+		//console.log( $("title",html).html() );
+	});
+    console.log("main");
+}
+/*
+http://api.jquery.com/jQuery/#jQuery2
+When passing in complex HTML, some browsers may not generate a DOM that exactly replicates the HTML source provided. As mentioned, jQuery uses the browser's .innerHTML property to parse the passed HTML and insert it into the current document. During this process, some browsers filter out certain elements such as <html>, <title>, or <head> elements. As a result, the elements inserted may not be representative of the original string passed.
+
+*/
+async function test2() {
+  var response = await function(){return "async"};
+  console.log(response);
+}
+
+</script>
+<style></style>
+</head>
+<body>
+body
+</body>
+</html>
